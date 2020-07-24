@@ -62,7 +62,7 @@ resource "aws_security_group" "nat" {
   vpc_id = aws_vpc.main_vpc.id
 
   tags = {
-    Name = "NATSG"
+    Name = "NATSG-DGM"
   }
 }
 
@@ -113,7 +113,7 @@ ingress {
   vpc_id = aws_vpc.main_vpc.id
 
   tags = {
-    Name = "WebServerSG"
+    Name = "WebServerSG-DGM"
   }
 }
 
@@ -165,7 +165,7 @@ resource "aws_security_group" "db" {
   vpc_id = aws_vpc.main_vpc.id
 
   tags = {
-    Name = "DBServerSG"
+    Name = "DBServerSG-DGM"
   }
 }
 
