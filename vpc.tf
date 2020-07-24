@@ -2,7 +2,7 @@ resource "aws_vpc" "main_vpc" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   tags = {
-    Name = "terraform-aws-vpc"
+    Name = "terraform-aws-vpc-dgm"
   }
 }
 
@@ -30,11 +30,11 @@ resource "aws_route_table" "eu-west-1a-public" {
 }
 
 resource "aws_route_table_association" "eu-west-1a-public" {
-  subnet_id      = aws_subnet.eu-west-1a-public.id
-  route_table_id = aws_route_table.eu-west-1a-public.id
+  subnet_id      = aws_subnet.ap-southeast-1a-public.id
+  route_table_id = aws_route_table.ap-southeast-1a-public.id
 }
 
-resource "aws_route_table" "eu-west-1a-private" {
+resource "aws_route_table" "ap-southeast-1a-private" {
   vpc_id = aws_vpc.main_vpc.id
 
   route {
@@ -43,23 +43,23 @@ resource "aws_route_table" "eu-west-1a-private" {
   }
 
   tags = {
-    Name = "Private Subnet"
+    Name = "Private Subnet-DGM"
   }
 }
 
-resource "aws_route_table_association" "eu-west-1a-private" {
-  subnet_id      = aws_subnet.eu-west-1a-private.id
-  route_table_id = aws_route_table.eu-west-1a-private.id
+resource "aws_route_table_association" "ap-southeast-1a-private" {
+  subnet_id      = aws_subnet.ap-southeast-1a-private.id
+  route_table_id = aws_route_table.ap-southeast-1a-private.id
 }
 
-resource "aws_subnet" "eu-west-1a-public" {
+resource "aws_subnet" "ap-southeast-1a-public" {
   vpc_id = aws_vpc.main_vpc.id
 
   cidr_block        = var.public_subnet_cidr
-  availability_zone = "eu-west-1a"
+  availability_zone = "ap-southeast-1a"
 
   tags = {
-    Name = "Public Subnet"
+    Name = "Public Subnet-DGM"
   }
 }
 
@@ -67,7 +67,7 @@ resource "aws_subnet" "eu-west-1a-private" {
   vpc_id = aws_vpc.main_vpc.id
 
   cidr_block        = var.private_subnet_cidr
-  availability_zone = "eu-west-1a"
+  availability_zone = "ap-southeast-1a"
 
   tags = {
     Name = "Private Subnet"
