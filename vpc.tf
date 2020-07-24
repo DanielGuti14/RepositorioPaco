@@ -63,7 +63,7 @@ resource "aws_subnet" "ap-southeast-1a-public" {
   }
 }
 
-resource "aws_subnet" "eu-west-1a-private" {
+resource "aws_subnet" "ap-southeast-1a-private" {
   vpc_id = aws_vpc.main_vpc.id
 
   cidr_block        = var.private_subnet_cidr
